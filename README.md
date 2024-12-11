@@ -30,12 +30,14 @@ La solution proposée comprend les fonctionnalités suivantes :
 - Processus de signature simple
 - Processus d'envoi et de renvoi des conventions à chaque partis
 - Interface web de base
+- Intégration avec Pronot si possible
 
-### Proposition des options supplémentaires avec potentiels date de déploiement
-- Avril 2025 : Intégration complète avec Pronote (si pas déjà fait)
-- Mai 2025 : Continuer l'intégration si non terminée
+### Proposition des options supplémentaires avec date potentielle
 - Juin 2025 : Amélioration du visuel
-- Juillet 2025 + : Étendre le projet pour implémenter les rapports de stages
+- Juillet 2025 + : 
+  - Étendre le projet pour implémenter les rapports de stages
+  - Notifications
+  - Suivi de stage en temps réel
 
 ## Modalités d'échange proposée
 - Réunions hebdomadaires de suivi (visioconférence)

@@ -48,4 +48,4 @@ Cette proposition vise à moderniser le processus de convention de stage, en off
 
 ---
 
-Pour toute question ou commentaire concernant cette proposition, n'hésitez pas à nous contacter à 9334@holbertonstudents.com ou via Slack.
+Pour toute question ou commentaire concernant cette proposition, n'hésitez pas à me contacter à cette adresse 9334@holbertonstudents.com ou via Slack.

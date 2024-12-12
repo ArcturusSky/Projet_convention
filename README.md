@@ -1,5 +1,32 @@
 # Proposition de Projet : Digitalisation du Processus de Convention de Stage
 
+- [Proposition de Projet : Digitalisation du Processus de Convention de Stage](#proposition-de-projet--digitalisation-du-processus-de-convention-de-stage)
+  - [Contexte](#contexte)
+  - [Objectif du Projet](#objectif-du-projet)
+  - [Développeur du Projet](#développeur-du-projet)
+  - [Proposition de Solution](#proposition-de-solution)
+  - [Technologies Proposées](#technologies-proposées)
+  - [Conformité RGPD](#conformité-rgpd)
+  - [Diagrammes et UML](#diagrammes-et-uml)
+    - [:warning:**NOTE IMPORTANTE:**](#warningnote-importante)
+    - [Diagramme de Classe](#diagramme-de-classe)
+    - [Explication du Diagramme de Classes](#explication-du-diagramme-de-classes)
+      - [1. ConventionStage](#1-conventionstage)
+      - [2. Utilisateur](#2-utilisateur)
+      - [3. Élève](#3-élève)
+      - [4. Entreprise](#4-entreprise)
+      - [5. Responsable Légal](#5-responsable-légal)
+      - [6. Professeur](#6-professeur)
+      - [7. ProviseurAdjoint](#7-proviseuradjoint)
+      - [Relations entre les Classes](#relations-entre-les-classes)
+      - [Conclusion](#conclusion)
+  - [Timeline du Projet](#timeline-du-projet)
+    - [MVP (Mars 2025)](#mvp-mars-2025)
+    - [Proposition des options supplémentaires avec date potentielle](#proposition-des-options-supplémentaires-avec-date-potentielle)
+  - [Modalités d'échange proposée](#modalités-déchange-proposée)
+  - [Conclusion](#conclusion-1)
+
+
 ## Contexte
 Le lycée Jean Monnet souhaite moderniser et simplifier le processus de gestion des conventions de stage. Actuellement, ce processus est en grande partie manuel, ce qui entraîne des inefficacités et des risques d'erreurs. La digitalisation permettra d'améliorer la transparence, la traçabilité, l'accessibilité des documents et surtout la rapidité du processus.
 
@@ -24,13 +51,106 @@ La solution proposée comprend les fonctionnalités suivantes :
 - **Base de données** : *Supabase* - Pour une gestion simplifiée des données et de l'authentification SI non gérées par Pronote.
 - **Multiplateforme** : *Flutter Web* - Pour une expérience utilisateur cohérente sur tous les appareils.
 
+## Conformité RGPD
+
+La solution doit impérativement respecter les exigences du RGPD. Voici comment cela sera assuré :
+
+- **Collecte Minimale de Données :** Seules les données nécessaires à la création et à la gestion des conventions seront collectées.
+- **Consentement Éclairé :** Les utilisateurs (élèves, parents, entreprises) devront donner leur consentement explicite avant toute collecte ou traitement de leurs données personnelles.
+- **Sécurisation des Données :** Des mesures techniques et organisationnelles seront mises en place pour garantir la sécurité des données personnelles (cryptage, accès restreint).
+- **Droit d'Accès et de Rectification :** Les utilisateurs auront le droit d'accéder à leurs données personnelles et de demander leur rectification si nécessaire.
+- **Archivage Sécurisé :** Les documents signés seront archivés dans un environnement sécurisé, garantissant leur intégrité et leur confidentialité (Pronote ou ce projet)
+
+## Diagrammes et UML
+
+### :warning:**NOTE IMPORTANTE:**
+
+Tous les diagrammes présentés ci-dessous sont susceptibles de changer en fonction des besoins et de l'évolution du projet. 
+
+### Diagramme de Classe
+
+![Diagramme de classe](./diagrammes_et_images/diagramme_de_classes.png)
+
+### Explication du Diagramme de Classes
+
+Ce diagramme représente le système de gestion des conventions de stage, montrant les différents acteurs impliqués et leurs interactions. Voici une description des principales composantes :
+
+#### 1. ConventionStage
+- **Description** : Représente le document officiel qui formalise le stage entre l'élève, l'entreprise et l'établissement scolaire.
+- **Attributs** :
+  - **`id`** : Identifiant unique de la convention.
+  - **`dateCreation`** : Date à laquelle la convention a été créée.
+  - **`dateDebut`** : Date de début du stage.
+  - **`dateFin`** : Date de fin du stage.
+  - **`statut`** : Indique l'état actuel de la convention (ex. : en attente, signée).
+- **Méthodes** :
+  - **`générerPDF()`** : Crée un document PDF de la convention.
+  - **`archiverAutomatiquement()`** : Archive automatiquement la convention une fois qu'elle a été signée par toutes les parties.
+  - **`signerConvention(utilisateur: Utilisateur)`** : Enregistre la signature d'un utilisateur sur la convention.
+  - **`envoyerCopieEntreprise()`** : Envoie automatiquement une copie à l'entreprise une fois la convention signée par tous.
+
+#### 2. Utilisateur
+- **Description** : Classe de base pour tous les utilisateurs du système.
+- **Attributs** :
+  - `id`, `nom`, `prenom`, `email`, `numeroDeTelephone`, `adresse`, `role`.
+- **Méthodes** :
+  - **`signer(convention: ConventionStage)`** : Permet à l'utilisateur de signer une convention.
+
+#### 3. Élève
+- **Description** : Représente l'étudiant qui doit réaliser un stage.
+- **Attributs** :
+  - **`classe`** : La classe de l'élève.
+- **Méthodes** :
+  - **`demanderNouvelleConvention()`** : Permet à l'élève de demander une nouvelle convention.
+
+#### 4. Entreprise
+- **Description** : Représente l'entreprise qui accueille l'élève en stage.
+- **Attributs** :
+  - **`SIRET`** : Numéro SIRET de l'entreprise.
+  - **`nomTuteurProfessionnel`** : Nom du tuteur professionnel dans l'entreprise.
+  - **`SecteurActivite`** : Secteur d'activité de l'entreprise.
+- **Méthodes** :
+  - **`validerConvention(convention: ConventionStage)`** : Permet à l'entreprise de valider la convention.
+
+#### 5. Responsable Légal
+- **Description** : Représente les parents ou tuteurs de l'élève.
+- **Attributs** :
+  - **`lienAvecEleve`** : Relation avec l'élève (parent, tuteur, etc.).
+- **Méthodes** :
+  - **`approuverConvention(convention: ConventionStage)`** : Permet au responsable légal d'approuver la convention.
+
+#### 6. Professeur
+- **Description** : Enseignant responsable du suivi des élèves.
+- **Attributs** :
+  - **`matièreEnseignée`** : Matière enseignée par le professeur.
+  - **`estProfesseurPrincipal`** : Indique si c'est un professeur principal.
+- **Méthodes** :
+  - **`vérifierConvention(convention: ConventionStage)`** : Vérifie que la convention est correcte avant qu'elle ne soit signée.
+
+#### 7. ProviseurAdjoint
+- **Description** : Responsable de la validation finale et de la gestion des conventions.
+- **Méthodes** :
+  - **`validerConvention(convention: ConventionStage)`** : Valide la convention de stage.
+  - **`archiverManuellement(convention: ConventionStage)`** : Archive manuellement une convention (ex. : abandonnée).
+  - **`supprimerConvention(convention: ConventionStage)`** : Supprime une convention si nécessaire.
+
+#### Relations entre les Classes
+- Chaque convention est gérée par plusieurs utilisateurs (élèves, entreprises, professeurs, etc.).
+- Un élève effectue son stage dans une entreprise et a un professeur référent.
+- Une entreprise peut accueillir plusieurs élèves en stage.
+- Un professeur peut être le référent de plusieurs élèves.
+- Le proviseur adjoint gère toutes les conventions, pouvant les valider, archiver manuellement ou supprimer.
+
+#### Conclusion
+Ce diagramme illustre les interactions entre les différents acteurs dans le processus de gestion des conventions de stage, assurant un suivi complet depuis la demande initiale jusqu'à l'archivage, en passant par les étapes de validation et de signature.
+
 ## Timeline du Projet
 ### MVP (Mars 2025)
 - Génération de conventions basiques
 - Processus de signature simple
 - Processus d'envoi et de renvoi des conventions à chaque partis
 - Interface web de base
-- Intégration avec Pronot si possible
+- Intégration avec Pronote si possible
 
 ### Proposition des options supplémentaires avec date potentielle
 - Juin 2025 : Amélioration du visuel

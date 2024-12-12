@@ -8,8 +8,8 @@
   - [Technologies Proposées](#technologies-proposées)
   - [Conformité RGPD](#conformité-rgpd)
   - [Diagrammes et UML](#diagrammes-et-uml)
-    - [:warning:**NOTE IMPORTANTE:**](#warningnote-importante)
-    - [Diagramme de Classe](#diagramme-de-classe)
+    - [:warning: **NOTE IMPORTANTE:**](#warning-note-importante)
+    - [Diagramme de Classes](#diagramme-de-classes)
     - [Explication du Diagramme de Classes](#explication-du-diagramme-de-classes)
       - [1. ConventionStage](#1-conventionstage)
       - [2. Utilisateur](#2-utilisateur)
@@ -63,13 +63,13 @@ La solution doit impérativement respecter les exigences du RGPD. Voici comment 
 
 ## Diagrammes et UML
 
-### :warning:**NOTE IMPORTANTE:**
+### :warning: **NOTE IMPORTANTE:**
 
 Tous les diagrammes présentés ci-dessous sont susceptibles de changer en fonction des besoins et de l'évolution du projet. 
 
-### Diagramme de Classe
+### Diagramme de Classes
 
-![Diagramme de classe](./diagrammes_et_images/diagramme_de_classes.png)
+![Diagramme de classes](./diagrammes_et_images/diagramme_de_classes.png)
 
 ### Explication du Diagramme de Classes
 

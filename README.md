@@ -10,21 +10,34 @@
   - [Diagrammes et UML](#diagrammes-et-uml)
     - [:warning: **NOTE IMPORTANTE:**](#warning-note-importante)
     - [Diagramme de Classes](#diagramme-de-classes)
-    - [Explication du Diagramme de Classes](#explication-du-diagramme-de-classes)
-      - [1. ConventionStage](#1-conventionstage)
-      - [2. Utilisateur](#2-utilisateur)
-      - [3. Élève](#3-élève)
-      - [4. Entreprise](#4-entreprise)
-      - [5. Responsable Légal](#5-responsable-légal)
-      - [6. Professeur](#6-professeur)
-      - [7. ProviseurAdjoint](#7-proviseuradjoint)
-      - [Relations entre les Classes](#relations-entre-les-classes)
-      - [Conclusion](#conclusion)
+      - [Explication du Diagramme de Classes](#explication-du-diagramme-de-classes)
+        - [1. ConventionStage](#1-conventionstage)
+        - [2. Utilisateur](#2-utilisateur)
+        - [3. Élève](#3-élève)
+        - [4. Entreprise](#4-entreprise)
+        - [5. Responsable Légal](#5-responsable-légal)
+        - [6. Professeur](#6-professeur)
+        - [7. ProviseurAdjoint](#7-proviseuradjoint)
+        - [Relations entre les Classes](#relations-entre-les-classes)
+        - [Conclusion](#conclusion)
+    - [Diagramme de Cas d'Utilisation (Flux de Signature)](#diagramme-de-cas-dutilisation-flux-de-signature)
+      - [Explication du Diagramme de Cas d'Utilisation](#explication-du-diagramme-de-cas-dutilisation)
+        - [1. Initialisation par l'Élève](#1-initialisation-par-lélève)
+        - [2. Validation par le Professeur](#2-validation-par-le-professeur)
+        - [3. Approbation par le Responsable Légal](#3-approbation-par-le-responsable-légal)
+        - [4. Validation de l'Entreprise](#4-validation-de-lentreprise)
+        - [5. Contre-signature par l'Élève](#5-contre-signature-par-lélève)
+        - [6. Validation Finale par le Proviseur Adjoint](#6-validation-finale-par-le-proviseur-adjoint)
+      - [Scénarios Possibles](#scénarios-possibles)
+        - [Flux Nominal](#flux-nominal)
+        - [Flux Alternatif](#flux-alternatif)
+      - [Principes Clés](#principes-clés)
+      - [Conclusion](#conclusion-1)
   - [Timeline du Projet](#timeline-du-projet)
-    - [MVP (Mars 2025)](#mvp-mars-2025)
+    - [Minimum Valuate Project (Mars 2025)](#minimum-valuate-project-mars-2025)
     - [Proposition des options supplémentaires avec date potentielle](#proposition-des-options-supplémentaires-avec-date-potentielle)
   - [Modalités d'échange proposée](#modalités-déchange-proposée)
-  - [Conclusion](#conclusion-1)
+  - [Conclusion](#conclusion-2)
 
 
 ## Contexte
@@ -71,11 +84,11 @@ Tous les diagrammes présentés ci-dessous sont susceptibles de changer en fonct
 
 ![Diagramme de classes](./diagrammes_et_images/diagramme_de_classes.png)
 
-### Explication du Diagramme de Classes
+#### Explication du Diagramme de Classes
 
 Ce diagramme représente le système de gestion des conventions de stage, montrant les différents acteurs impliqués et leurs interactions. Voici une description des principales composantes :
 
-#### 1. ConventionStage
+##### 1. ConventionStage
 - **Description** : Représente le document officiel qui formalise le stage entre l'élève, l'entreprise et l'établissement scolaire.
 - **Attributs** :
   - **`id`** : Identifiant unique de la convention.
@@ -89,21 +102,21 @@ Ce diagramme représente le système de gestion des conventions de stage, montra
   - **`signerConvention(utilisateur: Utilisateur)`** : Enregistre la signature d'un utilisateur sur la convention.
   - **`envoyerCopieEntreprise()`** : Envoie automatiquement une copie à l'entreprise une fois la convention signée par tous.
 
-#### 2. Utilisateur
+##### 2. Utilisateur
 - **Description** : Classe de base pour tous les utilisateurs du système.
 - **Attributs** :
   - `id`, `nom`, `prenom`, `email`, `numeroDeTelephone`, `adresse`, `role`.
 - **Méthodes** :
   - **`signer(convention: ConventionStage)`** : Permet à l'utilisateur de signer une convention.
 
-#### 3. Élève
+##### 3. Élève
 - **Description** : Représente l'étudiant qui doit réaliser un stage.
 - **Attributs** :
   - **`classe`** : La classe de l'élève.
 - **Méthodes** :
   - **`demanderNouvelleConvention()`** : Permet à l'élève de demander une nouvelle convention.
 
-#### 4. Entreprise
+##### 4. Entreprise
 - **Description** : Représente l'entreprise qui accueille l'élève en stage.
 - **Attributs** :
   - **`SIRET`** : Numéro SIRET de l'entreprise.
@@ -112,14 +125,14 @@ Ce diagramme représente le système de gestion des conventions de stage, montra
 - **Méthodes** :
   - **`validerConvention(convention: ConventionStage)`** : Permet à l'entreprise de valider la convention.
 
-#### 5. Responsable Légal
+##### 5. Responsable Légal
 - **Description** : Représente les parents ou tuteurs de l'élève.
 - **Attributs** :
   - **`lienAvecEleve`** : Relation avec l'élève (parent, tuteur, etc.).
 - **Méthodes** :
   - **`approuverConvention(convention: ConventionStage)`** : Permet au responsable légal d'approuver la convention.
 
-#### 6. Professeur
+##### 6. Professeur
 - **Description** : Enseignant responsable du suivi des élèves.
 - **Attributs** :
   - **`matièreEnseignée`** : Matière enseignée par le professeur.
@@ -127,30 +140,100 @@ Ce diagramme représente le système de gestion des conventions de stage, montra
 - **Méthodes** :
   - **`vérifierConvention(convention: ConventionStage)`** : Vérifie que la convention est correcte avant qu'elle ne soit signée.
 
-#### 7. ProviseurAdjoint
+##### 7. ProviseurAdjoint
 - **Description** : Responsable de la validation finale et de la gestion des conventions.
 - **Méthodes** :
   - **`validerConvention(convention: ConventionStage)`** : Valide la convention de stage.
   - **`archiverManuellement(convention: ConventionStage)`** : Archive manuellement une convention (ex. : abandonnée).
   - **`supprimerConvention(convention: ConventionStage)`** : Supprime une convention si nécessaire.
 
-#### Relations entre les Classes
+##### Relations entre les Classes
 - Chaque convention est gérée par plusieurs utilisateurs (élèves, entreprises, professeurs, etc.).
 - Un élève effectue son stage dans une entreprise et a un professeur référent.
 - Une entreprise peut accueillir plusieurs élèves en stage.
 - Un professeur peut être le référent de plusieurs élèves.
 - Le proviseur adjoint gère toutes les conventions, pouvant les valider, archiver manuellement ou supprimer.
 
-#### Conclusion
+##### Conclusion
 Ce diagramme illustre les interactions entre les différents acteurs dans le processus de gestion des conventions de stage, assurant un suivi complet depuis la demande initiale jusqu'à l'archivage, en passant par les étapes de validation et de signature.
 
+### Diagramme de Cas d'Utilisation (Flux de Signature)
+
+![Diagramme de Cas d'Utilisation](./diagrammes_et_images/use_case.png)
+
+#### Explication du Diagramme de Cas d'Utilisation 
+
+Ce diagramme illustre le processus complet de gestion des conventions de stage, depuis la demande initiale jusqu'à l'archivage final, en détaillant le parcours de signature par chaque intervenant.
+
+##### 1. Initialisation par l'Élève
+- **Action** : Demander une convention de stage
+- **Responsabilité** : L'élève est à l'origine de la démarche
+- **Objectif** : Formaliser son besoin de stage
+
+##### 2. Validation par le Professeur
+- **Action** : Vérifier et signer la convention
+- **Responsabilité** : Contrôler la conformité de la convention
+- **Critères** : 
+  - Vérifier les informations de l'élève
+  - S'assurer de la pertinence du stage
+  - Apposer sa signature après validation
+
+##### 3. Approbation par le Responsable Légal
+- **Action** : Signer la convention
+- **Responsabilité** : Donner son consentement parental
+- **Objectifs** :
+  - Confirmer les informations personnelles
+  - Autoriser le stage de l'élève
+
+##### 4. Validation de l'Entreprise
+- **Action** : Signer la convention
+- **Responsabilité** : Accepter officiellement l'accueil de l'élève
+- **Critères** :
+  - Compléter ses informations (SIRET, coordonnées)
+  - Confirmer les conditions d'accueil du stagiaire
+
+##### 5. Contre-signature par l'Élève
+- **Action** : Signer la convention
+- **Responsabilité** : Confirmer son engagement
+- **Objectif** : Valider définitivement son projet de stage
+
+##### 6. Validation Finale par le Proviseur Adjoint
+- **Action** : Valider et signer la convention
+- **Responsabilité** : Validation administrative ultime
+- **Pouvoirs** :
+  - Vérifier l'exhaustivité des signatures
+  - Valider définitivement la convention
+
+#### Scénarios Possibles
+
+##### Flux Nominal
+1. Toutes les signatures sont obtenues
+2. Le système archive automatiquement la convention
+3. Une copie est envoyée à l'entreprise
+
+##### Flux Alternatif
+- Si une étape de signature est incomplète pour diverses raisons (retrait de l'entreprise, refus de l'élève, etc)
+- Le Proviseur Adjoint peut :
+  - Archiver manuellement la convention
+  - Supprimer la convention
+
+#### Principes Clés
+- **Séquentialité** : Chaque intervenant signe à son tour
+- **Traçabilité** : Chaque signature est enregistrée
+- **Flexibilité** : Possibilité de gérer les cas non conformes
+
+#### Conclusion
+Ce diagramme de flux représente un processus collaboratif et séquentiel, garantissant que chaque convention de stage est rigoureusement validée par tous les acteurs concernés.
+
 ## Timeline du Projet
-### MVP (Mars 2025)
+
+### Minimum Valuate Project (Mars 2025)
 - Génération de conventions basiques
 - Processus de signature simple
 - Processus d'envoi et de renvoi des conventions à chaque partis
 - Interface web de base
 - Intégration avec Pronote si possible
+- Gestion de l'archivage
 
 ### Proposition des options supplémentaires avec date potentielle
 - Juin 2025 : Amélioration du visuel
@@ -161,7 +244,7 @@ Ce diagramme illustre les interactions entre les différents acteurs dans le pro
 
 ## Modalités d'échange proposée
 - Réunions hebdomadaires de suivi (visioconférence)
-- Démonstrations bi-mensuelles des nouvelles fonctionnalités (si applicables)
+- Démonstrations des nouvelles fonctionnalités sur demande (si applicables)
 - [Journal de bord](journal_de_bord.md) pour un suivi des tâches en temps réel.
     (Ce lien mène à un exemple, pour le moment vide, du format du journal de bord que j'utiliserais.)
 

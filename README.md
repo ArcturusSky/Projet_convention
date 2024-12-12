@@ -34,7 +34,7 @@
       - [Principes Clés](#principes-clés)
       - [Conclusion](#conclusion-1)
   - [Timeline du Projet](#timeline-du-projet)
-    - [Minimum Valuate Project (Mars 2025)](#minimum-valuate-project-mars-2025)
+    - [Projet Minimum Viable (Mars 2025)](#projet-minimum-viable-mars-2025)
     - [Proposition des options supplémentaires avec date potentielle](#proposition-des-options-supplémentaires-avec-date-potentielle)
   - [Modalités d'échange proposée](#modalités-déchange-proposée)
   - [Conclusion](#conclusion-2)
@@ -62,7 +62,6 @@ La solution proposée comprend les fonctionnalités suivantes :
 - **Backend** : *FastAPI* - Pour des performances optimales et une conformité RGPD.
 - **Signature électronique** : *DSS* (Digital Signature Service) - Conforme aux normes européennes.
 - **Base de données** : *Supabase* - Pour une gestion simplifiée des données et de l'authentification SI non gérées par Pronote.
-- **Multiplateforme** : *Flutter Web* - Pour une expérience utilisateur cohérente sur tous les appareils.
 
 ## Conformité RGPD
 
@@ -227,17 +226,16 @@ Ce diagramme de flux représente un processus collaboratif et séquentiel, garan
 
 ## Timeline du Projet
 
-### Minimum Valuate Project (Mars 2025)
+### Projet Minimum Viable (Mars 2025)
 - Génération de conventions basiques
 - Processus de signature simple
 - Processus d'envoi et de renvoi des conventions à chaque partis
-- Interface web de base
-- Intégration avec Pronote si possible
+- Interface de base multiplatforme
 - Gestion de l'archivage
 
 ### Proposition des options supplémentaires avec date potentielle
-- Juin 2025 : Amélioration du visuel
-- Juillet 2025 + : 
+- Avril 2025 : Amélioration du visuel
+- Juin 2025 + : 
   - Étendre le projet pour implémenter les rapports de stages
   - Notifications
   - Suivi de stage en temps réel
